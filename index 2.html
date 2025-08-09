@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Chi butti dalla torre? – Cantanti italiane</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; }
+    .match { margin: 20px 0; padding: 10px; border: 1px solid #ccc; border-radius: 5px; }
+    button { margin: 5px; padding: 10px 15px; font-size: 16px; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Chi butti dalla torre? – Cantanti italiane</h1>
+  <div id="game"></div>
+
+  <script>
+    const names = [
+      "Mina","Annalisa","Sissi","Gaia","Ariete","Madame","Lollipop","Rosanna Fratello","BigMama","Fiorella Mannoia",
+      "Federica Abbate","Serena Brancale","Noemi","Katia Ricciarelli","Arisa","L’Aura","Rose Villain","Alexia","Joan Thiele","Valeria Marini",
+      "Sabrina Salerno","Claudia Mori","Chadia Rodriguez","Maria Nazionale","Lorella Cuccarini","Chiara Galiazzo","Alice (Carla Bissi)","Ele A","Orietta Berti","Irene Fornaciari",
+      "Rita Pavone","Nilla Pizzi","Dalida","Mara Sattei","Nada","Giorgia","Dori Ghezzi","Laura Pausini","Daniela Goggi","Roshelle",
+      "Rossana Casale","Paola Turci","Giusy Ferreri","Irene Fargo","Anna Oxa","Loretta Goggi","Nina Zilli","Romina Power","Anna Tatangelo","Margherita Vicario",
+      "Jo Squillo","Alessandra Amoroso","Silvia Mezzanotte","Caterina Caselli","Mietta","Silvia Salemi","Cristina D’Avena","Carmen Consoli","Malika Ayane","Gianna Nannini",
+      "Baby K","Wilma Goich","Fiordaliso","Irene Grandi","Amanda Lear","Mia Martini","Bianca Atzei","Syria","Marcella Bella","Federica Carta",
+      "LE DEVA","Anna","Milva","M¥SS KETA","Heather Parisi","Angelina Mango","Francesca Michielin","Donatella Milani","Elodie","Loredana Bertè",
+      "Paola & Chiara","Antonella Ruggiero","Dolcenera","Clara","Coma Cose (California)","Gigliola Cinquetti","Raffaella Carrà","Valeria Rossi","Iva Zanicchi","Ditonellapiaga",
+      "Donatella Rettore","Levante","Teresa De Sio","Emma Marrone","Sarah Toscano","Tosca","Angela Brambati (Ricchi e Poveri)","Patty Pravo","Ornella Vanoni","Marina Rei",
+      "Gabriella Ferri","Elisa"
+    ];
+
+    let currentChampionIndex = 0;
+    let currentChallengerIndex = 1;
+
+    function renderMatch() {
+      const gameDiv = document.getElementById("game");
+      if (currentChallengerIndex >= names.length) {
+        gameDiv.innerHTML = "<h2>🏆 Vincitrice finale: " + names[currentChampionIndex] + "</h2>";
+        return;
+      }
+      gameDiv.innerHTML = `
+        <div class="match">
+          <h2>${names[currentChampionIndex]} VS ${names[currentChallengerIndex]}</h2>
+          <button onclick="chooseChampion(${currentChampionIndex})">Sopravvive ${names[currentChampionIndex]}</button>
+          <button onclick="chooseChampion(${currentChallengerIndex})">Sopravvive ${names[currentChallengerIndex]}</button>
+        </div>
+      `;
+    }
+
+    function chooseChampion(winnerIndex) {
+      if (winnerIndex !== currentChampionIndex) {
+        currentChampionIndex = winnerIndex;
+      }
+      currentChallengerIndex++;
+      renderMatch();
+    }
+
+    renderMatch();
+  </script>
+</body>
+</html>
